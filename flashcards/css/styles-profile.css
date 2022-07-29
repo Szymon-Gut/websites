@@ -1,0 +1,24 @@
+img {
+    width: 300px;
+    height: auto;
+}
+#fileToUpload {
+    width: 300px;
+}
+#info {
+    margin-top: 200px;
+    margin-right: 10px;
+    margin-left: 200px;
+}
+.tables {
+    border-radius: 10%;
+    background-color: #0d6efd;
+    padding: 15px;
+    color: white;
+}
+#avatar {
+    margin-top: 30px;
+}
+form, input, label{
+    color: white !important;
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles-index.css">
+    <script src="js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/690158f6f5.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-white">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <a class="navbar-brand" href="#">
+                <img src="https://avatars.githubusercontent.com/u/72514490?v=4" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+            </a>
+            <span class="navbar-text">Flashcards</span>
+            </ul>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item px-2">
+                <a class="nav-link btn btn-lg" href="login.php"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link btn btn-primary btn-lg text-white" href="register.php"><i class="fa-solid fa-lock-open"></i> Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid bg-primary">
+    <div class="row">
+        <div class="col">
+            <img id="header-img-main" class="img-fluid rounded my-5 ml-5" src="header-main-page.png" alt="">
+        </div>
+        <div class="col-lg-3  col-sm-6 col-md-5 d-flex align-items-center">
+            <span class="text-white">
+                <h1>
+                    Do You find studying <strong>boring</strong>
+                    and <strong>annoying</strong>?
+                </h1>
+                <br>
+                <span class="fs-3">Necessarily check this out  <a class="btn btn-danger" href="#">Start</a></span>
+            </span>
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid">
+    <h1 class="text-center">You <strong id="love" class="text-danger"><span id="love-txt" style="display: inline;">love</span><i id="heart" class="fa-solid fa-heart" style="display: none;"></i></strong> travelling? <br>Don't waste Your time and check it out!</h1>
+    <script>
+        document.getElementById("love").onclick = function () {
+            replace()
+        };
+        function replace() {
+            var love = document.getElementById("love-txt");
+            var heart = document.getElementById("heart");
+            if (love.style.display === "none") {
+                heart.style.display = "none";
+                love.style.display = "inline";
+            } else {
+                love.style.display = "none";
+                heart.style.display="inline";
+            }
+        }
+
+    </script>
+    <div class="row">
+            <div id="myChart" class="chart">
+                <script>
+
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Contry', 'speakers'],
+                            ['English',1132000000],
+                            ['Mandarin',1117000000],
+                            ['Hindi',615000000 ],
+                            ['Spanish',534000000],
+                            ['French', 280000000],
+                            ['Arabic', 274000000],
+                            ['Bengali', 265000000],
+                            ['Russian', 258000000],
+                            ['Portuguese', 234000000],
+                            ['Indonesian', 198000000]
+                        ]);
+
+                        var options = {
+                            title:'The most spoken languages in the world'
+                        };
+
+                        var chart = new google.visualization.BarChart(document.getElementById('myChart'));
+                        chart.draw(data, options);
+                    }
+                    $(window).resize(function(){
+                        drawChart();
+                    });
+
+
+                </script>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top img-fluid" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">Frank Smith</h4>
+                    <p class="card-text">One language sets you in a corridor for life. Two languages open every door along the way.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top img-fluid" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">Frank Smith</h4>
+                        <p class="card-text">One language sets you in a corridor for life. Two languages open every door along the way.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top img-fluid" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title">Frank Smith</h4>
+                        <p class="card-text">One language sets you in a corridor for life. Two languages open every door along the way.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
