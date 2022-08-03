@@ -1,0 +1,39 @@
+img {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: block;
+    margin: 0;
+    object-fit: cover; /* cover makes the image stretch the width and height of the container */
+    object-position: 0 25%;
+}
+.col-sm-8 {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    margin-top: 40%;
+    margin-left: 10%;
+}
+#finished {
+    margin-top: 38%;
+    margin-left: 10%;
+}
+.error {
+    animation: shake 0.2s ease-in-out 0s 2;
+    box-shadow: 0 0 0.5em red;
+}
+@keyframes shake {
+    0% { margin-left: 0; }
+    25% { margin-left: 0.5rem; }
+    75% { margin-left: -0.5rem; }
+    100% { margin-left: 0; }
+}
+#starting {
+    margin-top: 30%;
+    margin-left: 5%;
+}
+#chart-header {
+    margin-bottom: 50px;
+}

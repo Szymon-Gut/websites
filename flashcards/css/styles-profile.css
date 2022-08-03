@@ -19,6 +19,11 @@ img {
 #avatar {
     margin-top: 30px;
 }
-form, input, label{
+.blue-form{
     color: white !important;
+}
+#main {
+    background-image: url("../header-main-page.png");
+    background-position: 20% 100%;
+    background-repeat: no-repeat;
 }

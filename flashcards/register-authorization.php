@@ -1,16 +1,9 @@
 <?php
-function validate($data)
-{
 
-    $data = trim($data);
+include "dbConnector.php";
+global $conn;
+include "validate.php";
 
-    $data = stripslashes($data);
-
-    $data = htmlspecialchars($data);
-
-    return $data;
-
-}
 $date = $_POST['date'];
 
 $email = validate($_POST['email']);
@@ -19,24 +12,19 @@ $uid = validate($_POST['uname']);
 
 $pw = validate($_POST['password']);
 
-$sname = "127.0.0.1";
-
-$unmae = "root";
-
-$password = 123456;
-
-$db_name = "flashcards";
-
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
 
 $sql = "INSERT into users (email, login, password, birth) values ('$email', '$uid', '$pw', '$date')";
+
+$sql2 = "SELECT * FROM users WHERE (email='$uid' OR login='$uid') AND password='$pw'";
 
 if (!mysqli_query($conn, $sql)) {
     echo "false";
 } else {
+    $results = mysqli_query($conn, $sql2);
     session_start();
     $_SESSION['sid'] = session_id();
-    header("Location: index.php");
+    $_SESSION['uid'] = mysqli_fetch_array($results)['id'];
+    header("Location: index.php?param=".$_SESSION['uid']);
 
 }
 

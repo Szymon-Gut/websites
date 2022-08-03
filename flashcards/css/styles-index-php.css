@@ -1,0 +1,32 @@
+.flashcard {
+    width: 300px;
+    margin-top: 50px;
+    margin-left: 50px;
+    /*text-align: center;*/
+    /*color: white;*/
+    border-radius: 10px;
+    /*letter-spacing: 2px;*/
+    /*font-size: 20px;*/
+}
+.card-text {
+    align-items: center;
+}
+.words-header {
+    color: white;
+}
+p {
+    color: white;
+}
+a{
+    margin-bottom: 2px !important;
+}
+img {
+    border-radius: 10px;
+    width: 300px;
+    height: auto;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+/*button {*/
+/*    margin-left: 40%;*/
+/*}*/

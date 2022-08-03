@@ -1,28 +1,10 @@
 <?php
-function validate($data)
-{
+include "dbConnector.php";
+global $conn;
+include "validate.php";
 
-    $data = trim($data);
-
-    $data = stripslashes($data);
-
-    $data = htmlspecialchars($data);
-
-    return $data;
-
-}
 $uid = validate($_POST['uname']);
 $pw = validate($_POST['password']);
-
-$sname = "127.0.0.1";
-
-$unmae = "root";
-
-$password = 123456;
-
-$db_name = "flashcards";
-
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
 
 $sql = "SELECT * FROM users WHERE (email='$uid' OR login='$uid') AND password='$pw'";
 

@@ -1,15 +1,8 @@
 <?php
 session_start();
 
-$sname = "127.0.0.1";
-
-$unmae = "root";
-
-$password = 123456;
-
-$db_name = "flashcards";
-
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
+include "dbConnector.php";
+global $conn;
 
 $id = $_SESSION['uid'];
 
@@ -66,39 +59,34 @@ if (mysqli_num_rows($results3) == 1) {
 <body class="h-100 bg-light">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Flashcards</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Flashcards</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="profile.php">Profile</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Flashcards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="profile.php">Profile</a>
+                </li>
+            </ul>
+            <a class="btn btn-warning">Logout</a>
         </div>
     </nav>
-    <div class="container h-100">
+    <div id="main" class="container h-100">
         <div class="row">
             <div class="col-md-4 col-sm-12 col-lg-5 col-xl-5 col-xs-12">
                 <div id="avatar" class="container w-75 tables">
-                    <h2>My avatar</h2>
+                    <h2 class="blue-form">My avatar</h2>
                     <?php
-                    $target_file = "avatars/".$_SESSION["uid"]."jpg";
+                    $target_file = "avatars/".$_SESSION["uid"].".jpg";
                     If(file_exists($target_file)) {
                         echo "<img class='img-fluid img-thumbnail' src='$target_file' alt='something went wrong with displaying Your avatar'>";
                     } else {
                         echo "<img class='img-fluid img-thumbnail' src='avatars/avatar.jpg' alt='something went wrong with displaying Your avatar'>";
                     }
                     ?>
-                    <form enctype="multipart/form-data" method="post" action="profile-configure.php"> <!--to do!!!!!!!-->
+                    <form class="blue-form" enctype="multipart/form-data" method="post" action="profile-configure.php"> <!--to do!!!!!!!-->
                         <div class="form-group">
-                            <label for="fileToUpload">Upload new avatar</label>
-                            <input type="file" id="fileToUpload" name="upload" class="form-control form-control-sm w-75">
+                            <label class="blue-form" for="fileToUpload">Upload new avatar</label>
+                            <input type="file" id="fileToUpload" name="upload" class="form-control form-control-sm w-75 blue-form" onchange="this.form.submit()">
                         </div>
                     </form>
                 </div>
@@ -106,23 +94,23 @@ if (mysqli_num_rows($results3) == 1) {
             <div class="col-md-8  col-sm-12 col-lg-7 col-xl-7 col-xs-12">
                 <div id="info" class="container w-75 tables">
                     <h2>Personal informations</h2>
-                    <form>
+                    <form class="">
                         <div class="mb-3 row">
-                            <label for="email" class="col-sm-4 col-form-label">Email</label>
+                            <label for="email" class="col-sm-4 col-form-label blue-form">Email</label>
                             <div class="col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="email" value="<?php echo $email?>">
+                                <input type="text" readonly class="form-control-plaintext blue-form" id="email" value="<?php echo $email?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="nick" class="col-sm-4 col-form-label">User name</label>
+                            <label for="nick" class="col-sm-4 col-form-label blue-form">User name</label>
                             <div class="col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="nick" value="<?php echo $login?>">
+                                <input type="text" readonly class="form-control-plaintext blue-form" id="nick" value="<?php echo $login?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="country" class="col-sm-4 col-form-label">Country</label>
+                            <label for="country" class="col-sm-4 col-form-label blue-form">Country</label>
                             <div class="col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="country" value="<?php
+                                <input type="text" readonly class="form-control-plaintext blue-form" id="country" value="<?php
                                 if (is_null($country)) {
                                     echo "-";
                                 } else {
@@ -132,15 +120,15 @@ if (mysqli_num_rows($results3) == 1) {
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="birth" class="col-sm-4 col-form-label">Birth</label>
+                            <label for="birth" class="col-sm-4 col-form-label blue-form">Birth</label>
                             <div class="col-sm-6">
-                                <input type="date" readonly class="form-control-plaintext" id="birth" value="<?php echo $birth?>">
+                                <input type="date" readonly class="form-control-plaintext blue-form" id="birth" value="<?php echo $birth?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="languages" class="col-sm-4 col-form-label">Languages</label>
+                            <label for="languages" class="col-sm-4 col-form-label blue-form">Languages</label>
                             <div class="col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="languages" value="<?php
+                                <input type="text" readonly class="form-control-plaintext blue-form" id="languages" value="<?php
                                 if (!is_null($languages)) {
                                     for( $i=0; $i < count($languages); $i++) {
                                         if($i == count($languages)-1) {
@@ -157,9 +145,9 @@ if (mysqli_num_rows($results3) == 1) {
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label for="hobby" class="col-sm-4 col-form-label">Hobby</label>
+                            <label for="hobby" class="col-sm-4 col-form-label blue-form">Hobby</label>
                             <div class="col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="hobby" value="<?php
+                                <input type="text" readonly class="form-control-plaintext blue-form" id="hobby" value="<?php
                                 if (is_null($hobby)) {
                                     echo "-";
                                 } else {
@@ -168,8 +156,49 @@ if (mysqli_num_rows($results3) == 1) {
                                 ?>">
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit personal informations TODO</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="edit-profile.php" method="post">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="country-edit"><strong>Country</strong></label>
+                            <input class="form-control" type="text" name="country-edit" placeholder="..." id="country-edit">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="birth-edit"><strong>Birth</strong></label>
+                            <input class="form-control" type="date" name="birth-edit" placeholder="..." id="birth-edit">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="language-edit"><strong>Languages</strong></label>
+                            <input class="form-control" type="text" name="language-edit" placeholder="..." id="language-edit">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="hobby-edit"><strong>Hobby</strong></label>
+                            <input class="form-control" type="text" name="hobby-edit" placeholder="..." id="hobby-edit">
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
